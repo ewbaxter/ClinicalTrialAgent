@@ -78,7 +78,7 @@ class ClinicalTrialAgent:
         """
         return [
             {
-                {
+               {
                     "name": "search_clinical_trials",
                     "description": "Search ClinicalTrials.gov for trials matching patient criteria. IMPORTANT: Always include location to find trials near the patient. Returns list of trials with basic info.",
                     "input_schema": {
