@@ -7,7 +7,13 @@ __pycache__/
 venv/
 .venv/
 ENV/
+
+# Environment files - NEVER COMMIT THESE
 .env
+.env.*
+*.env
+.env.py
+*.env.py
 
 # Logs - DO NOT COMMIT
 logs/
