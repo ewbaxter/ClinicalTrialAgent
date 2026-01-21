@@ -10,6 +10,7 @@ from datetime import datetime
 from agent.logger import AgentLogger
 from services.clinicaltrials_api import ClinicalTrialsAPI
 
+
 class ClinicalTrialAgent:
     """
     Agentic AI orchestrator with real-time updates and logging
@@ -77,30 +78,32 @@ class ClinicalTrialAgent:
         """
         return [
             {
-                "name": "search_clinical_trials",
-                "description": "Search ClinicalTrials.gov for trials matching patient criteria. Returns list of trials with basic info. Use this first to find candidate trials.",
-                "input_schema": {
-                    "type": "object",
-                    "properties": {
-                        "condition": {
-                            "type": "string",
-                            "description": "Medical condition or disease (e.g., 'liver disease', 'diabetes')"
+                {
+                    "name": "search_clinical_trials",
+                    "description": "Search ClinicalTrials.gov for trials matching patient criteria. IMPORTANT: Always include location to find trials near the patient. Returns list of trials with basic info.",
+                    "input_schema": {
+                        "type": "object",
+                        "properties": {
+                            "condition": {
+                                "type": "string",
+                                "description": "Medical condition or disease (e.g., 'liver disease', 'diabetes')"
+                            },
+                            "location": {
+                                "type": "string",
+                                "description": "Patient's city and state (e.g., 'Denver, CO', 'Colorado'). REQUIRED to find nearby trials."
+                            },
+                            "recruiting_status": {
+                                "type": "string",
+                                "description": "Trial recruitment status",
+                                "enum": ["recruiting", "not_yet_recruiting", "active", "all"]
+                            },
+                            "max_results": {
+                                "type": "integer",
+                                "description": "Maximum number of trials to return (default 20)"
+                            }
                         },
-                        "location": {
-                            "type": "string",
-                            "description": "City or state for location filtering (optional)"
-                        },
-                        "recruiting_status": {
-                            "type": "string",
-                            "description": "Trial recruitment status",
-                            "enum": ["recruiting", "not_yet_recruiting", "active", "all"]
-                        },
-                        "max_results": {
-                            "type": "integer",
-                            "description": "Maximum number of trials to return (default 20)"
-                        }
-                    },
-                    "required": ["condition"]
+                        "required": ["condition", "location"]  # Add location as required!
+                    }
                 }
             },
             {
@@ -243,8 +246,6 @@ class ClinicalTrialAgent:
         )
 
         return result
-
-
 
     def _mock_check_eligibility(self, params: Dict) -> Dict:
         """Mock eligibility check"""
