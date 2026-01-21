@@ -78,32 +78,30 @@ class ClinicalTrialAgent:
         """
         return [
             {
-               {
-                    "name": "search_clinical_trials",
-                    "description": "Search ClinicalTrials.gov for trials matching patient criteria. IMPORTANT: Always include location to find trials near the patient. Returns list of trials with basic info.",
-                    "input_schema": {
-                        "type": "object",
-                        "properties": {
-                            "condition": {
-                                "type": "string",
-                                "description": "Medical condition or disease (e.g., 'liver disease', 'diabetes')"
-                            },
-                            "location": {
-                                "type": "string",
-                                "description": "Patient's city and state (e.g., 'Denver, CO', 'Colorado'). REQUIRED to find nearby trials."
-                            },
-                            "recruiting_status": {
-                                "type": "string",
-                                "description": "Trial recruitment status",
-                                "enum": ["recruiting", "not_yet_recruiting", "active", "all"]
-                            },
-                            "max_results": {
-                                "type": "integer",
-                                "description": "Maximum number of trials to return (default 20)"
-                            }
+                "name": "search_clinical_trials",
+                "description": "Search ClinicalTrials.gov for trials matching patient criteria. IMPORTANT: Always include location to find trials near the patient. Returns list of trials with basic info.",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "condition": {
+                            "type": "string",
+                            "description": "Medical condition or disease (e.g., 'liver disease', 'diabetes')"
                         },
-                        "required": ["condition", "location"]  # Add location as required!
-                    }
+                        "location": {
+                            "type": "string",
+                            "description": "Patient's city and state (e.g., 'Denver, CO', 'Colorado'). REQUIRED to find nearby trials."
+                        },
+                        "recruiting_status": {
+                            "type": "string",
+                            "description": "Trial recruitment status",
+                            "enum": ["recruiting", "not_yet_recruiting", "active", "all"]
+                        },
+                        "max_results": {
+                            "type": "integer",
+                            "description": "Maximum number of trials to return (default 20)"
+                        }
+                    },
+                    "required": ["condition", "location"]
                 }
             },
             {
