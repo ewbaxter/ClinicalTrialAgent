@@ -193,7 +193,7 @@ def main():
 
         st.markdown("---")
         st.markdown("### 📊 Current Status")
-        st.info("**DEMO MODE** - Using mock data\n\nReal API integration in progress")
+        st.info("* REAL MODE** - Using REAL API integration ")
 
         if st.button("🗑️ Clear History"):
             st.session_state.search_history = []
