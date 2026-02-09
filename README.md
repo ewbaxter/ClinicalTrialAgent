@@ -34,6 +34,8 @@ Built to demonstrate modern agentic AI patterns and healthcare domain expertise.
 - Production logging system
 - Search history management
 - Deterministic temperature setting (0.0) for clinical consistency
+- Direct ClinicalTrials.gov links in final results (clickable links to each recommended trial)
+- Graceful fallback when max iterations reached (agent summarizes partial results instead of failing)
 
 **🔜 v0.2 Planned Features:**
 - Temperature control UI (Deterministic/Creative dropdown)
@@ -137,6 +139,7 @@ The app will open in your browser at `http://localhost:8501`
 
 3. **Review Results**
    - Matched clinical trials with relevance scores
+   - Direct links to each trial on ClinicalTrials.gov (e.g., `https://clinicaltrials.gov/study/NCT03995238`)
    - Agent's decision-making process
    - Search history
 
@@ -196,6 +199,8 @@ python test_agent.py
 - Real-time UI with activity streaming
 - Production logging system
 - Search history management
+- Direct ClinicalTrials.gov links in final results
+- Graceful fallback on max iterations (partial results instead of hard failure)
 
 **🚧 Planned:**
 - MongoDB persistence for search results
