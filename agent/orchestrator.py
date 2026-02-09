@@ -435,13 +435,53 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
                     "log_file": self.logger.get_log_path() if self.logger else None
                 }
 
-        # If we hit max iterations, something went wrong
-        if self.logger:
-            self.logger.log_error("Max iterations reached")
+        # If we hit max iterations, gracefully extract whatever results were gathered
+        self._log_activity('thinking', 'Max iterations reached — requesting final summary from agent', iteration=iteration)
 
-        return {
-            "success": False,
-            "error": "Max iterations reached",
-            "iterations": iteration,
-            "log_file": self.logger.get_log_path() if self.logger else None
-        }
+        if self.logger:
+            self.logger.log_error("Max iterations reached - attempting graceful fallback")
+
+        # Ask Claude to summarize what it found so far (without tools)
+        messages.append({
+            "role": "user",
+            "content": "You have reached the maximum number of iterations. Please provide your final summary and recommendations based on the trials you have found so far. Include ClinicalTrials.gov links for any trials you identified."
+        })
+
+        try:
+            fallback_response = self.client.messages.create(
+                model=self.model,
+                max_tokens=4096,
+                temperature=0.0,
+                system=system_prompt,
+                messages=messages
+            )
+
+            final_response = ""
+            for block in fallback_response.content:
+                if block.type == "text":
+                    final_response = block.text
+
+            self._log_activity('complete', 'Agent completed via graceful fallback', iterations=iteration)
+
+            if self.logger:
+                self.logger.log_final_response(final_response)
+
+            return {
+                "success": True,
+                "final_response": final_response,
+                "iterations": iteration,
+                "conversation": messages,
+                "log_file": self.logger.get_log_path() if self.logger else None
+            }
+
+        except Exception as e:
+            # If even the fallback fails, return a hard error
+            if self.logger:
+                self.logger.log_error(f"Graceful fallback also failed: {str(e)}")
+
+            return {
+                "success": False,
+                "error": f"Max iterations reached and fallback failed: {str(e)}",
+                "iterations": iteration,
+                "log_file": self.logger.get_log_path() if self.logger else None
+            }
