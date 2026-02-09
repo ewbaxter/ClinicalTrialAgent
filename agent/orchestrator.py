@@ -342,7 +342,9 @@ When given patient criteria, you should:
 
 Be autonomous - decide which tools to use and in what order. If you get no results, try broadening the search criteria. If you get too many results, try adding more specific filters.
 
-Always explain your reasoning for each step so the user can see your decision-making process."""
+Always explain your reasoning for each step so the user can see your decision-making process.
+
+IMPORTANT: In your final results, for each recommended trial, always include a direct link to the trial on ClinicalTrials.gov using the format: https://clinicaltrials.gov/study/{NCT_ID} (e.g., https://clinicaltrials.gov/study/NCT03995238). Present the link as a clickable markdown link for each trial."""
 
         user_message = f"""Find clinical trials for a patient with the following criteria:
 
