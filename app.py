@@ -217,7 +217,7 @@ def main():
             location = st.text_input("Location", value="Denver, CO", placeholder="City, State")
             conditions_input = st.text_area(
                 "Medical Conditions (one per line)",
-                value="severe fatty liver disease\nNAFLD\nCAP score 374",
+                value="",
                 height=100
             )
 
