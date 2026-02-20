@@ -21,6 +21,55 @@ class ClinicalTrialsAPI:
         self.timeout = timeout
         self.session = requests.Session()
 
+    def _find_best_location(self, locations: List[Dict], patient_location: Optional[str] = None) -> Dict:
+        """
+        Find the trial location closest to the patient.
+        Matches by state first, then city, falling back to the first location.
+
+        Args:
+            locations: List of location dicts from the API
+            patient_location: Patient's location string (e.g., "Denver, CO")
+
+        Returns:
+            The best matching location dict
+        """
+        if not locations:
+            return {}
+
+        if not patient_location:
+            return locations[0]
+
+        # Parse patient location into city and state
+        parts = [p.strip() for p in patient_location.split(",")]
+        patient_city = parts[0].lower() if parts else ""
+        patient_state = parts[1].lower() if len(parts) > 1 else parts[0].lower()
+
+        # Score each location: city+state match = 2, state match = 1, no match = 0
+        best_score = 0
+        best_loc = locations[0]
+
+        for loc in locations:
+            score = 0
+            loc_state = loc.get("state", "").lower()
+            loc_city = loc.get("city", "").lower()
+
+            # Check state match (handle both abbreviation and full name)
+            if loc_state and (patient_state in loc_state or loc_state in patient_state):
+                score = 1
+                # Check city match
+                if loc_city and (patient_city in loc_city or loc_city in patient_city):
+                    score = 2
+
+            if score > best_score:
+                best_score = score
+                best_loc = loc
+
+                # Perfect match - stop looking
+                if score == 2:
+                    break
+
+        return best_loc
+
     def search_studies(
             self,
             condition: str,
@@ -93,12 +142,16 @@ class ClinicalTrialsAPI:
                 locations_module = protocol.get("contactsLocationsModule", {})
                 locations = locations_module.get("locations", [])
 
-                # Get first location for simplicity
+                # Find the best location match for the patient
                 location_str = "Location not specified"
+                facility_str = ""
                 if locations:
-                    loc = locations[0]
-                    city = loc.get("city", "")
-                    state = loc.get("state", "")
+                    best_loc = self._find_best_location(locations, location)
+                    city = best_loc.get("city", "")
+                    state = best_loc.get("state", "")
+                    facility = best_loc.get("facility", "")
+                    if facility:
+                        facility_str = facility
                     if city and state:
                         location_str = f"{city}, {state}"
                     elif state:
@@ -109,7 +162,9 @@ class ClinicalTrialsAPI:
                     "title": id_module.get("briefTitle", ""),
                     "status": status_module.get("overallStatus", ""),
                     "phase": ", ".join(design_module.get("phases", ["N/A"])),
-                    "location": location_str
+                    "location": location_str,
+                    "facility": facility_str,
+                    "total_sites": len(locations)
                 }
                 trials.append(trial)
 
