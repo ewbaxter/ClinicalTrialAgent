@@ -131,11 +131,22 @@ class ClinicalTrialsAPI:
             # Parse response
             studies = data.get("studies", [])
 
+            # Statuses that indicate a trial is NOT available for enrollment
+            excluded_statuses = {
+                "COMPLETED", "TERMINATED", "WITHDRAWN", "SUSPENDED",
+                "NO_LONGER_AVAILABLE", "UNKNOWN_STATUS"
+            }
+
             trials = []
             for study in studies:
                 protocol = study.get("protocolSection", {})
                 id_module = protocol.get("identificationModule", {})
                 status_module = protocol.get("statusModule", {})
+
+                # Skip trials that are not actively recruiting
+                overall_status = status_module.get("overallStatus", "").upper()
+                if overall_status in excluded_statuses:
+                    continue
                 design_module = protocol.get("designModule", {})
 
                 # Extract locations
