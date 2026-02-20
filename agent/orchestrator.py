@@ -19,7 +19,7 @@ class ClinicalTrialAgent:
     def __init__(
             self,
             api_key: str,
-            model: str = "claude-sonnet-4-20250514",
+            model: str = "claude-sonnet-4-6",
             activity_callback: Optional[Callable] = None,
             enable_logging: bool = True,
             verbose_console: bool = False

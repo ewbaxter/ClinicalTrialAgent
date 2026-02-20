@@ -73,7 +73,7 @@ Built to demonstrate modern agentic AI patterns and healthcare domain expertise.
 
 ## 🛠️ Tech Stack
 
-- **AI/LLM**: Anthropic Claude Sonnet 4 (with function calling/tool use)
+- **AI/LLM**: Anthropic Claude Sonnet 4.6 (with function calling/tool use)
 - **Backend**: Python 3.10+
 - **Web Framework**: Streamlit
 - **APIs**: ClinicalTrials.gov API v2
@@ -178,6 +178,7 @@ clinical_trial_agent/
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `ANTHROPIC_API_KEY` | Yes | Your Anthropic API key for Claude |
+| `CLAUDE_MODEL` | No | Claude model ID (default: `claude-sonnet-4-6`) |
 
 ## 🧪 Testing
 

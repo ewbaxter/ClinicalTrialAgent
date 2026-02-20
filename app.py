@@ -185,7 +185,7 @@ def main():
         st.markdown("---")
         st.markdown("### ⚙️ Technical Stack")
         st.markdown("""
-        - **AI**: Claude Sonnet 4
+        - **AI**: Claude Sonnet 4.6
         - **Backend**: Python, Anthropic API
         - **Database**: MongoDB (planned)
         - **APIs**: ClinicalTrials.gov
@@ -235,11 +235,12 @@ def main():
                 st.error("Please provide Patient ID and at least one condition")
                 return
 
-            # Get API key
+            # Get API key and model
             api_key = os.getenv("ANTHROPIC_API_KEY")
             if not api_key:
                 st.error("❌ ANTHROPIC_API_KEY not found in environment")
                 return
+            model = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
 
             # Clear previous activities
             st.session_state.agent_activities = []
@@ -259,6 +260,7 @@ def main():
             # Create agent with callback
             agent = ClinicalTrialAgent(
                 api_key=api_key,
+                model=model,
                 activity_callback=activity_callback
             )
 

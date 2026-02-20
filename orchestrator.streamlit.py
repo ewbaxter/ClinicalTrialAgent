@@ -13,7 +13,7 @@ class ClinicalTrialAgentStreamlit(BaseAgent):
     Streamlit-enhanced version of the agent with callback support
     """
 
-    def __init__(self, api_key: str, model: str = "claude-sonnet-4-20250514", callback=None):
+    def __init__(self, api_key: str, model: str = "claude-sonnet-4-6", callback=None):
         super().__init__(api_key, model)
         self.callback = callback  # Function to call with updates
 
