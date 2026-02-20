@@ -36,6 +36,8 @@ Built to demonstrate modern agentic AI patterns and healthcare domain expertise.
 - Deterministic temperature setting (0.0) for clinical consistency
 - Direct ClinicalTrials.gov links in final results (clickable links to each recommended trial)
 - Graceful fallback when max iterations reached (agent summarizes partial results instead of failing)
+- Institutional research registry — local and national research centers with trial finder links
+- Smart location matching — displays the nearest trial site and facility name
 
 **🔜 v0.2 Planned Features:**
 - Temperature control UI (Deterministic/Creative dropdown)
@@ -53,7 +55,7 @@ Built to demonstrate modern agentic AI patterns and healthcare domain expertise.
            ▼
 ┌─────────────────────────────┐
 │  Agent Orchestrator         │
-│  (Claude Sonnet 4)          │ ← Autonomous decision-making
+│  (Claude Sonnet 4.6)        │ ← Autonomous decision-making
 │  - Tool selection           │
 │  - Multi-step planning      │
 │  - Adaptive reasoning       │
@@ -63,7 +65,8 @@ Built to demonstrate modern agentic AI patterns and healthcare domain expertise.
       ├─→ [Tool: check_eligibility] → Eligibility Logic
       ├─→ [Tool: rank_trials] ──────→ Relevance Scoring
       ├─→ [Tool: save_results] ─────→ MongoDB (planned)
-      └─→ [Tool: get_details] ──────→ Trial Details
+      ├─→ [Tool: get_details] ──────→ Trial Details
+      └─→ [Tool: institutions] ─────→ Research Institution Registry
            │
            ▼
       ┌──────────────┐
@@ -155,19 +158,23 @@ The agent autonomously executes this workflow:
 2. **Broadening Strategy**: If needed, tries alternative search terms
 3. **Eligibility Filtering**: Checks age, gender, condition criteria
 4. **Relevance Ranking**: Ranks by proximity, phase, enrollment status
-5. **Result Persistence**: Saves search for future monitoring
+5. **Institutional Resources**: Finds local and national research centers
+6. **Result Persistence**: Saves search for future monitoring
 
 ## 📁 Project Structure
 ```
 clinical_trial_agent/
 ├── agent/
 │   ├── __init__.py
-│   ├── orchestrator.py      # Core agent logic with tool orchestration
-│   └── logger.py            # Production logging system
+│   ├── orchestrator.py        # Core agent logic with tool orchestration
+│   └── logger.py              # Production logging system
+├── data/
+│   └── institution_registry.json  # Curated research institution database
 ├── services/
-│   └── clinicaltrials_api.py # ClinicalTrials.gov API client
-├── logs/                     # Generated log files
-├── app.py                    # Streamlit web interface
+│   ├── clinicaltrials_api.py  # ClinicalTrials.gov API client
+│   └── institution_registry.py # Research institution lookup service
+├── logs/                       # Generated log files
+├── app.py                      # Streamlit web interface
 ├── test_agent.py            # CLI testing script
 ├── requirements.txt
 └── README.md
@@ -202,6 +209,8 @@ python test_agent.py
 - Search history management
 - Direct ClinicalTrials.gov links in final results
 - Graceful fallback on max iterations (partial results instead of hard failure)
+- Institutional research registry (local and national research centers)
+- Smart location matching (nearest trial site with facility name)
 
 **🚧 Planned:**
 - MongoDB persistence for search results

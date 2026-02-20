@@ -9,6 +9,7 @@ from typing import Dict, List, Any, Optional, Callable
 from datetime import datetime
 from agent.logger import AgentLogger
 from services.clinicaltrials_api import ClinicalTrialsAPI
+from services.institution_registry import InstitutionRegistry
 
 
 class ClinicalTrialAgent:
@@ -30,6 +31,7 @@ class ClinicalTrialAgent:
         self.conversation_history = []
         self.activity_callback = activity_callback
         self.ct_api = ClinicalTrialsAPI()
+        self.institution_registry = InstitutionRegistry()
 
         # Initialize logger
         self.logger = AgentLogger(verbose_console=verbose_console) if enable_logging else None
@@ -196,6 +198,25 @@ class ClinicalTrialAgent:
                     },
                     "required": ["nct_id"]
                 }
+            },
+            {
+                "name": "search_institutional_resources",
+                "description": "Search for research institutions with clinical trial programs near the patient's location. Returns local and national institutions with links to their trial finder pages. Use AFTER searching ClinicalTrials.gov to provide additional research resources the patient can explore directly.",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "Patient's city and state (e.g., 'Denver, CO')"
+                        },
+                        "specialties": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                            "description": "Optional list of medical specialties to filter by (e.g., ['cancer/oncology', 'pulmonary'])"
+                        }
+                    },
+                    "required": ["location"]
+                }
             }
         ]
 
@@ -228,6 +249,9 @@ class ClinicalTrialAgent:
 
         elif tool_name == "get_trial_details":
             return self._mock_get_details(tool_input)
+
+        elif tool_name == "search_institutional_resources":
+            return self._search_institutions(tool_input)
 
         else:
             return {"error": f"Unknown tool: {tool_name}"}
@@ -323,6 +347,14 @@ class ClinicalTrialAgent:
             }
         }
 
+    def _search_institutions(self, params: Dict) -> Dict:
+        """Search institutional registry for research resources near patient"""
+        return self.institution_registry.search_by_location(
+            location=params.get("location", ""),
+            specialties=params.get("specialties"),
+            include_national=True
+        )
+
     def run_autonomous_search(self, patient_criteria: Dict) -> Dict:
         """
         Main agentic workflow - Claude autonomously plans and executes trial matching.
@@ -338,13 +370,16 @@ When given patient criteria, you should:
 1. Search for relevant trials using search_clinical_trials
 2. Check eligibility using check_eligibility
 3. Rank the eligible trials using rank_trials
-4. Save the results using save_search_results
+4. Search for local and national research institutions using search_institutional_resources
+5. Save the results using save_search_results
 
 Be autonomous - decide which tools to use and in what order. If you get no results, try broadening the search criteria. If you get too many results, try adding more specific filters.
 
 Always explain your reasoning for each step so the user can see your decision-making process.
 
-IMPORTANT: In your final results, for each recommended trial, always include a direct link to the trial on ClinicalTrials.gov using the format: https://clinicaltrials.gov/study/{NCT_ID} (e.g., https://clinicaltrials.gov/study/NCT03995238). Present the link as a clickable markdown link for each trial."""
+IMPORTANT: In your final results:
+- For each recommended trial, include a direct link to the trial on ClinicalTrials.gov using the format: https://clinicaltrials.gov/study/{NCT_ID} (e.g., https://clinicaltrials.gov/study/NCT03995238). Present the link as a clickable markdown link.
+- After listing matched trials, include an "Additional Research Resources" section with local and national institutions the patient can contact directly. Include the institution name and a link to their trial finder page. These institutions may have trials not yet listed on ClinicalTrials.gov."""
 
         user_message = f"""Find clinical trials for a patient with the following criteria:
 

@@ -1,0 +1,345 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-02-20",
+  "description": "Registry of research institutions with clinical trial programs, organized by state and metro area",
+  "institutions": [
+    {
+      "id": "cu-anschutz",
+      "name": "University of Colorado Anschutz Medical Campus",
+      "short_name": "CU Anschutz",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://medschool.cuanschutz.edu/clinical-trials",
+      "website": "https://www.cuanschutz.edu",
+      "city": "Aurora",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "cancer/oncology",
+        "pulmonary",
+        "immunology",
+        "neuroscience",
+        "cardiovascular",
+        "metabolic/endocrine",
+        "ophthalmology",
+        "gastroenterology/hepatology"
+      ],
+      "notes": "Colorado's only academic medical center; houses the CU Cancer Center (NCI-designated)"
+    },
+    {
+      "id": "uchealth",
+      "name": "UCHealth",
+      "short_name": "UCHealth",
+      "type": "health_system",
+      "trial_finder_url": "https://www.uchealth.org/clinical-trials/",
+      "website": "https://www.uchealth.org",
+      "city": "Aurora",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "orthopedics",
+        "neuroscience",
+        "transplant",
+        "gastroenterology/hepatology"
+      ],
+      "notes": "Largest health system in Colorado; partners with CU Anschutz for clinical research"
+    },
+    {
+      "id": "national-jewish",
+      "name": "National Jewish Health",
+      "short_name": "National Jewish",
+      "type": "specialty_center",
+      "trial_finder_url": "https://www.nationaljewish.org/research/clinical-trials",
+      "website": "https://www.nationaljewish.org",
+      "city": "Denver",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "pulmonary",
+        "respiratory",
+        "asthma",
+        "COPD",
+        "immunology",
+        "allergy"
+      ],
+      "notes": "Ranked #1 respiratory hospital in the US; leading pulmonary research center"
+    },
+    {
+      "id": "childrens-colorado",
+      "name": "Children's Hospital Colorado",
+      "short_name": "Children's Colorado",
+      "type": "pediatric_center",
+      "trial_finder_url": "https://www.childrenscolorado.org/research/clinical-trials/",
+      "website": "https://www.childrenscolorado.org",
+      "city": "Aurora",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "pediatric oncology",
+        "pediatric cardiology",
+        "pediatric neurology",
+        "neonatology",
+        "genetics"
+      ],
+      "notes": "Top-ranked pediatric hospital; located on Anschutz campus"
+    },
+    {
+      "id": "denver-health",
+      "name": "Denver Health Medical Center",
+      "short_name": "Denver Health",
+      "type": "safety_net_hospital",
+      "trial_finder_url": "https://www.denverhealth.org/for-professionals/clinical-specialties/research",
+      "website": "https://www.denverhealth.org",
+      "city": "Denver",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "trauma",
+        "public health",
+        "infectious disease",
+        "substance use disorders",
+        "primary care"
+      ],
+      "notes": "Denver's safety-net hospital; Level 1 trauma center with community-focused research"
+    },
+    {
+      "id": "rocky-mountain-va",
+      "name": "Rocky Mountain Regional VA Medical Center",
+      "short_name": "Rocky Mountain VA",
+      "type": "va_medical_center",
+      "trial_finder_url": "https://www.va.gov/rocky-mountain-regional-va-medical-center/research/",
+      "website": "https://www.va.gov/eastern-colorado-health-care/",
+      "city": "Aurora",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "PTSD",
+        "traumatic brain injury",
+        "mental health",
+        "cardiovascular",
+        "infectious disease"
+      ],
+      "notes": "VA research facility on the Anschutz campus; veteran-focused clinical trials"
+    },
+    {
+      "id": "sarah-cannon-sky-ridge",
+      "name": "Sarah Cannon Research Institute at Sky Ridge",
+      "short_name": "Sarah Cannon - Sky Ridge",
+      "type": "research_network",
+      "trial_finder_url": "https://sarahcannon.com/find-a-location/",
+      "website": "https://sarahcannon.com",
+      "city": "Lone Tree",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "cancer/oncology",
+        "hematology"
+      ],
+      "notes": "Part of the Sarah Cannon Research Institute oncology trial network"
+    },
+    {
+      "id": "mayo-clinic",
+      "name": "Mayo Clinic",
+      "short_name": "Mayo Clinic",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.mayo.edu/research/clinical-trials",
+      "website": "https://www.mayoclinic.org",
+      "city": "Rochester",
+      "state": "MN",
+      "metro_area": "Rochester",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "neuroscience",
+        "transplant",
+        "gastroenterology/hepatology",
+        "endocrinology",
+        "immunology",
+        "rare diseases"
+      ],
+      "notes": "Top-ranked hospital nationally; extensive clinical trial portfolio across all specialties"
+    },
+    {
+      "id": "md-anderson",
+      "name": "MD Anderson Cancer Center",
+      "short_name": "MD Anderson",
+      "type": "cancer_center",
+      "trial_finder_url": "https://www.mdanderson.org/patients-family/diagnosis-treatment/clinical-trials.html",
+      "website": "https://www.mdanderson.org",
+      "city": "Houston",
+      "state": "TX",
+      "metro_area": "Houston",
+      "specialties": [
+        "cancer/oncology",
+        "hematology",
+        "radiation oncology",
+        "surgical oncology",
+        "immunotherapy"
+      ],
+      "notes": "NCI-designated comprehensive cancer center; largest cancer research program in the US"
+    },
+    {
+      "id": "cleveland-clinic",
+      "name": "Cleveland Clinic",
+      "short_name": "Cleveland Clinic",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://my.clevelandclinic.org/research/clinical-trials",
+      "website": "https://my.clevelandclinic.org",
+      "city": "Cleveland",
+      "state": "OH",
+      "metro_area": "Cleveland",
+      "specialties": [
+        "cardiovascular",
+        "gastroenterology/hepatology",
+        "urology",
+        "pulmonary",
+        "neuroscience",
+        "orthopedics"
+      ],
+      "notes": "Ranked #1 for cardiology; strong clinical research across multiple specialties"
+    },
+    {
+      "id": "mass-general",
+      "name": "Massachusetts General Hospital",
+      "short_name": "Mass General",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.massgeneral.org/clinical-trials",
+      "website": "https://www.massgeneral.org",
+      "city": "Boston",
+      "state": "MA",
+      "metro_area": "Boston",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "neuroscience",
+        "psychiatry",
+        "infectious disease",
+        "transplant",
+        "genetics"
+      ],
+      "notes": "Harvard-affiliated teaching hospital; one of the largest clinical research programs in the US"
+    },
+    {
+      "id": "johns-hopkins",
+      "name": "Johns Hopkins Hospital",
+      "short_name": "Johns Hopkins",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.hopkinsmedicine.org/research/clinical-trials",
+      "website": "https://www.hopkinsmedicine.org",
+      "city": "Baltimore",
+      "state": "MD",
+      "metro_area": "Baltimore",
+      "specialties": [
+        "cancer/oncology",
+        "neuroscience",
+        "psychiatry",
+        "ophthalmology",
+        "rheumatology",
+        "infectious disease",
+        "genetics"
+      ],
+      "notes": "Pioneer in clinical research; consistently top-ranked across multiple specialties"
+    },
+    {
+      "id": "nih-clinical-center",
+      "name": "NIH Clinical Center",
+      "short_name": "NIH Clinical Center",
+      "type": "government_research",
+      "trial_finder_url": "https://clinicalcenter.nih.gov/participate.html",
+      "website": "https://clinicalcenter.nih.gov",
+      "city": "Bethesda",
+      "state": "MD",
+      "metro_area": "Washington DC",
+      "specialties": [
+        "rare diseases",
+        "immunology",
+        "infectious disease",
+        "cancer/oncology",
+        "genetics",
+        "allergy",
+        "metabolic/endocrine"
+      ],
+      "notes": "World's largest hospital devoted entirely to clinical research; all trials are NIH-funded"
+    },
+    {
+      "id": "stanford-medicine",
+      "name": "Stanford Medicine",
+      "short_name": "Stanford",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://stanfordhealthcare.org/clinical-trials.html",
+      "website": "https://stanfordhealthcare.org",
+      "city": "Stanford",
+      "state": "CA",
+      "metro_area": "San Francisco Bay Area",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "neuroscience",
+        "transplant",
+        "genetics",
+        "immunotherapy"
+      ],
+      "notes": "Leading research university hospital with pioneering work in precision medicine"
+    },
+    {
+      "id": "ucla-health",
+      "name": "UCLA Health",
+      "short_name": "UCLA Health",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.uclahealth.org/clinical-trials",
+      "website": "https://www.uclahealth.org",
+      "city": "Los Angeles",
+      "state": "CA",
+      "metro_area": "Los Angeles",
+      "specialties": [
+        "cancer/oncology",
+        "neuroscience",
+        "cardiovascular",
+        "transplant",
+        "ophthalmology",
+        "urology"
+      ],
+      "notes": "Top-ranked academic medical center in the western US"
+    },
+    {
+      "id": "northwestern-medicine",
+      "name": "Northwestern Medicine",
+      "short_name": "Northwestern",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.nm.org/clinical-trials",
+      "website": "https://www.nm.org",
+      "city": "Chicago",
+      "state": "IL",
+      "metro_area": "Chicago",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "neuroscience",
+        "transplant",
+        "women's health"
+      ],
+      "notes": "Major Midwest academic medical center with extensive clinical trial programs"
+    },
+    {
+      "id": "duke-health",
+      "name": "Duke University Health System",
+      "short_name": "Duke Health",
+      "type": "academic_medical_center",
+      "trial_finder_url": "https://www.dukehealth.org/clinical-trials",
+      "website": "https://www.dukehealth.org",
+      "city": "Durham",
+      "state": "NC",
+      "metro_area": "Research Triangle",
+      "specialties": [
+        "cancer/oncology",
+        "cardiovascular",
+        "ophthalmology",
+        "neuroscience",
+        "immunology",
+        "orthopedics"
+      ],
+      "notes": "Part of the Research Triangle; strong partnerships with Duke University research"
+    }
+  ]
+}
