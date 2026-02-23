@@ -6,7 +6,13 @@
       "Bash(git merge:*)",
       "Bash(git push:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(pip show:*)",
+      "Bash(.venvScriptspython.exe --version)",
+      "Bash(.venvScriptspython.exe -m pip:*)",
+      "Bash(\".venv/Scripts/python.exe\" --version)",
+      "Bash(\".venv/Scripts/python.exe\" -m pip --version)",
+      "Bash(python -m pip:*)"
     ]
   }
 }
