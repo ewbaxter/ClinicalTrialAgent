@@ -391,6 +391,20 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
 
         messages = [{"role": "user", "content": user_message}]
 
+        # Prompt caching: system prompt and tool definitions are identical across
+        # every iteration of the agentic loop (and every search), so mark them as
+        # ephemeral cache breakpoints. On cache hits, input tokens for these
+        # blocks are billed at ~10% of the base rate.
+        tools = self.get_tool_definitions()
+        tools[-1]["cache_control"] = {"type": "ephemeral"}
+        system_blocks = [
+            {
+                "type": "text",
+                "text": system_prompt,
+                "cache_control": {"type": "ephemeral"},
+            }
+        ]
+
         # Agentic loop - Claude continues calling tools until it's done
         iteration = 0
         max_iterations = 10  # Safety limit
@@ -405,8 +419,8 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
                 model=self.model,
                 max_tokens=4096,
                 temperature=0.0,  # Add this: 0=deterministic, 1=creative
-                system=system_prompt,
-                tools=self.get_tool_definitions(),
+                system=system_blocks,
+                tools=tools,
                 messages=messages
             )
 
@@ -489,7 +503,7 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
                 model=self.model,
                 max_tokens=4096,
                 temperature=0.0,
-                system=system_prompt,
+                system=system_blocks,
                 messages=messages
             )
 
