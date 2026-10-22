@@ -418,7 +418,6 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
             response = self.client.messages.create(
                 model=self.model,
                 max_tokens=4096,
-                temperature=0.0,  # Add this: 0=deterministic, 1=creative
                 system=system_blocks,
                 tools=tools,
                 messages=messages
@@ -502,7 +501,6 @@ Please autonomously search, filter, and rank trials. Show me your step-by-step r
             fallback_response = self.client.messages.create(
                 model=self.model,
                 max_tokens=4096,
-                temperature=0.0,
                 system=system_blocks,
                 messages=messages
             )

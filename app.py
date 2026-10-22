@@ -298,6 +298,7 @@ def main():
                 # Display final results
                 st.markdown("---")
                 st.markdown("### 📋 Final Results")
+                st.info("**Note:** ClinicalTrials.gov links may not open when clicked directly. Copy the URL and paste it into your browser instead.")
                 st.markdown(result['final_response'])
 
                 st.success(f"✅ Search completed in {result['iterations']} iterations and saved to history")
