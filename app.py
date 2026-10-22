@@ -37,6 +37,7 @@ st.markdown("""
         padding: 1rem;
         margin: 0.5rem 0;
         border-radius: 4px;
+        color: #1a1a2e;
     }
     .tool-call {
         background-color: #fff5e6;
@@ -44,6 +45,7 @@ st.markdown("""
         padding: 1rem;
         margin: 0.5rem 0;
         border-radius: 4px;
+        color: #1a1a2e;
     }
     .success-box {
         background-color: #e8f5e9;
@@ -51,6 +53,7 @@ st.markdown("""
         padding: 1rem;
         margin: 0.5rem 0;
         border-radius: 4px;
+        color: #1a1a2e;
     }
     .iteration-badge {
         background-color: #9c27b0;
@@ -130,8 +133,8 @@ def display_activity_log(activities):
                 <strong>🔧 Tool Call: {tool_name}</strong>
                 <span class="agentic-badge">AUTONOMOUS</span><br/>
                 <details>
-                    <summary>View parameters</summary>
-                    <pre>{json.dumps(tool_input, indent=2)}</pre>
+                    <summary style="color: #1a1a2e; cursor: pointer;">View parameters</summary>
+                    <pre style="color: #1a1a2e; background-color: #ffefd5; padding: 0.5rem; border-radius: 4px; overflow-x: auto;">{json.dumps(tool_input, indent=2)}</pre>
                 </details>
             </div>
             """, unsafe_allow_html=True)
@@ -139,7 +142,7 @@ def display_activity_log(activities):
         elif activity_type == 'tool_result':
             tool_name = activity.get('tool_name', 'unknown')
             st.markdown(f"""
-            <div style="padding: 0.5rem; margin-left: 2rem; color: #666; font-size: 0.9rem;">
+            <div style="padding: 0.5rem; margin-left: 2rem; color: #1a1a2e; background-color: #f5f5f5; border-radius: 4px; font-size: 0.9rem;">
                 ✓ {tool_name} completed
             </div>
             """, unsafe_allow_html=True)
@@ -185,7 +188,7 @@ def main():
         st.markdown("---")
         st.markdown("### ⚙️ Technical Stack")
         st.markdown("""
-        - **AI**: Claude Sonnet 4.6
+        - **AI**: Claude Sonnet 5.5
         - **Backend**: Python, Anthropic API
         - **Database**: MongoDB (planned)
         - **APIs**: ClinicalTrials.gov
@@ -193,7 +196,7 @@ def main():
 
         st.markdown("---")
         st.markdown("### 📊 Current Status")
-        st.info("* REAL MODE** - Using REAL API integration ")
+        st.info("**REAL MODE** - Using REAL API integration")
 
         if st.button("🗑️ Clear History"):
             st.session_state.search_history = []
@@ -240,7 +243,7 @@ def main():
             if not api_key:
                 st.error("❌ ANTHROPIC_API_KEY not found in environment")
                 return
-            model = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
+            model = os.getenv("CLAUDE_MODEL", "claude-sonnet-5-5")
 
             # Clear previous activities
             st.session_state.agent_activities = []

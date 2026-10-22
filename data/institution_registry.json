@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "last_updated": "2026-02-20",
+  "last_updated": "2026-10-22",
   "description": "Registry of research institutions with clinical trial programs, organized by state and metro area",
   "institutions": [
     {
@@ -64,6 +64,25 @@
         "allergy"
       ],
       "notes": "Ranked #1 respiratory hospital in the US; leading pulmonary research center"
+    },
+    {
+      "id": "craig-hospital",
+      "name": "Craig Hospital",
+      "short_name": "Craig Hospital",
+      "type": "specialty_center",
+      "trial_finder_url": "https://craighospital.org/research/clinical-trials",
+      "website": "https://craighospital.org",
+      "city": "Englewood",
+      "state": "CO",
+      "metro_area": "Denver Metro",
+      "specialties": [
+        "spinal cord injury",
+        "traumatic brain injury",
+        "rehabilitation",
+        "neuroscience",
+        "orthopedics"
+      ],
+      "notes": "World-renowned rehabilitation hospital; consistently ranked among the top 10 rehabilitation hospitals in the US by U.S. News & World Report"
     },
     {
       "id": "childrens-colorado",

@@ -12,7 +12,11 @@
       "Bash(.venvScriptspython.exe -m pip:*)",
       "Bash(\".venv/Scripts/python.exe\" --version)",
       "Bash(\".venv/Scripts/python.exe\" -m pip --version)",
-      "Bash(python -m pip:*)"
+      "Bash(python -m pip:*)",
+      "Skill(claude-api)",
+      "PowerShell(& \".venv\\\\Scripts\\\\python.exe\" -c \"from agent.orchestrator import ClinicalTrialAgent; print\\('Orchestrator imports OK'\\); from services.institution_registry import InstitutionRegistry; r = InstitutionRegistry\\(\\); results = r.search_by_location\\('Denver, CO'\\); print\\(f'Local institutions: {results[\\\\\"local_count\\\\\"]}'\\); [print\\(f'  - {i[\\\\\"name\\\\\"]}'\\) for i in results['local_institutions']]\")",
+      "Bash(.venv/Scripts/python.exe -c ' *)",
+      "Bash(.venv/Scripts/python.exe -c \"import py_compile; py_compile.compile\\('app.py', doraise=True\\); print\\('app.py syntax OK'\\)\")"
     ]
   }
 }

@@ -99,25 +99,21 @@ class AgentLogger:
         self.logger.info(f"{'=' * 70}\n")
 
     def log_final_response(self, response: str):
-        """Log final agent response"""
+        """Log final agent response (strip emojis for Windows compatibility)"""
+        if not response:
+            self.logger.warning("Final response was empty or None")
+            return
 
-        def log_final_response(self, response: str):
-            """Log final agent response (strip emojis for Windows compatibility)"""
-            if not response:
-                self.logger.warning("Final response was empty or None")
-                return
-
-            self.logger.info("FINAL RESPONSE:")
-            for line in str(response).split('\n'):
-                if line.strip():
-                    try:
-                        self.logger.info(f"  {line}")
-                    except UnicodeEncodeError:
-                        # Fallback: strip emojis if encoding fails
-                        cleaned = line.encode('ascii', 'ignore').decode('ascii')
-                        self.logger.info(f"  {cleaned}")
-                    except Exception as e:
-                        self.logger.error(f"Error logging line: {e}")
+        self.logger.info("FINAL RESPONSE:")
+        for line in str(response).split('\n'):
+            if line.strip():
+                try:
+                    self.logger.info(f"  {line}")
+                except UnicodeEncodeError:
+                    cleaned = line.encode('ascii', 'ignore').decode('ascii')
+                    self.logger.info(f"  {cleaned}")
+                except Exception as e:
+                    self.logger.error(f"Error logging line: {e}")
 
     def log_error(self, error: str):
         """Log an error"""
