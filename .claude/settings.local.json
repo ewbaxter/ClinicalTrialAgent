@@ -18,7 +18,8 @@
       "Bash(.venv/Scripts/python.exe -c ' *)",
       "Bash(.venv/Scripts/python.exe -c \"import py_compile; py_compile.compile\\('app.py', doraise=True\\); print\\('app.py syntax OK'\\)\")",
       "Bash(.venv/Scripts/python.exe -c \"import py_compile; py_compile.compile\\('agent/orchestrator.py', doraise=True\\); print\\('OK'\\)\")",
-      "Bash(GIT_EDITOR=true git rebase --continue)"
+      "Bash(GIT_EDITOR=true git rebase --continue)",
+      "Bash(git reset *)"
     ]
   }
 }
